@@ -28,3 +28,9 @@ ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(), [0])], remaind
 x = np.array(ct.fit_transform(x))
 
 print(x)
+
+# Encoding the dependent Variable   
+from sklearn.preprocessing import LabelEncoder
+le = LabelEncoder()
+y = le.fit_transform(y)
+print(y)
