@@ -11,10 +11,20 @@ y = dataset.iloc[:,-1].values  #getting the last column    vector of labels Y
 print(x)
 print(y)
 
+
 #Taking care of missing data
 from sklearn.impute import SimpleImputer
 imputer = SimpleImputer(missing_values=np.nan, strategy='mean')
 imputer.fit(x[:,1:3])
 x[:, 1:3] = imputer.transform(x[:,1:3])
+
+print(x)
+
+# Encoding categorical data
+# Encoding the independant Variable
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import OneHotEncoder
+ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(), [0])], remainder='passthrough')
+x = np.array(ct.fit_transform(x))
 
 print(x)
